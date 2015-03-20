@@ -1,0 +1,14 @@
+{
+  "name": "docker-analytics-gui",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Node Express webapp - Analytics GUI",
+  "author": "Gabor Orszaczky <orszaczky@gmail.com>",
+  "dependencies": {
+    "express": "4.9.x",
+    "ejs": "1.0.x"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}

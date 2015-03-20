@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Analytics UI</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+	<![endif]-->
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/Chart.js"></script>
+
+	<style>
+		.admin-header {  
+			padding-left: 15px;
+			border-bottom: 1px solid #999999;
+			height: 60px;
+		}
+		.modit-logo {
+			padding: 11px 0 16px 0;
+			max-height: 60px;
+		}
+		.admin-header .admin-tag {
+			margin-top: 18px;
+			margin-left: 5px;
+		}
+		.text-large {
+			font-size:18px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container" style="position:absolute; top:0; left:0; right:0;bottom:0;">
+		<div class="row clearfix">
+			<div class="admin-header col-lg-12 ng-scope">
+				<a class="pull-left" href="//mod.it">
+					<img class="modit-logo" src="https://mod.it/assets/logo.svg">
+				</a>
+				<span class="pull-right text-large admin-tag"><b>Admin Analytics Dashboard</b></span>
+			</div>
+		</div>
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<form role="form" class="form-inline" style="position:relative; top: 30px;">
+					<div class="form-group">
+						 <label for="metric">Metric</label>
+						 <select id="metric" class="form-control">
+						 	<option>Users</option>
+						 </select>
+					</div>
+					<div class="form-group">
+						 <label for="time">Time</label>
+						 <select id="time" class="form-control">
+						 	<option>Custom</option>
+						 	<option>Today</option>
+						 	<option>Yesterday</option>
+						 	<option>This Month</option>
+						 	<option>Last Month</option>
+						 </select>
+					</div>
+					<div class="form-group">
+						 <label for="start">Start</label>
+						 <input id="start" class="form-control" type="text">
+					</div>
+					<div class="form-group">
+						 <label for="end">End</label>
+						 <input id="end" class="form-control" type="text">
+					</div>
+				</form>
+				<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+					<li class="active pull-right"><a href="#chart" data-toggle="tab">Chart</a></li>
+					<li class="pull-right"><a href="#table" data-toggle="tab">Table</a></li>
+				</ul>
+				<div id="my-tab-content" class="tab-content">
+					<div class="tab-pane active" id="chart">
+					<canvas id="canvas" height="40%" width="100%"></canvas>
+					</div>
+					<div class="tab-pane" id="table">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Date</th>
+									<th>New</th>
+									<th>Total</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Monday March 16, 2015</td>
+									<td>4</td>
+									<td>27</td>
+								</tr>
+								<tr>
+									<td>Sunday March 15, 2015</td>
+									<td>10</td>
+									<td>23</td>
+								</tr>
+								<tr>
+									<td>Saturday March 14, 2015</td>
+									<td>4</td>
+									<td>13</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div> 
+			</div>
+		</div>
+					
+	</div>
+
+	<script>
+		var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
+		var lineChartData = {
+			labels : ["January","February","March","April","May","June","July"],
+			datasets : [
+				{
+					label: "My First dataset",
+					fillColor : "rgba(220,220,220,0.2)",
+					strokeColor : "rgba(220,220,220,1)",
+					pointColor : "rgba(220,220,220,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+				},
+				{
+					label: "My Second dataset",
+					fillColor : "rgba(151,187,205,0.2)",
+					strokeColor : "rgba(151,187,205,1)",
+					pointColor : "rgba(151,187,205,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(151,187,205,1)",
+					data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+				}
+			]
+
+		}
+
+		window.onload = function(){
+			var ctx = document.getElementById("canvas").getContext("2d");
+			window.myLine = new Chart(ctx).Line(lineChartData, {
+				responsive: true
+			});
+		}
+
+
+	</script>
+
+</body>
+</html>
